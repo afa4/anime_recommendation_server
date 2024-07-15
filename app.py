@@ -1,6 +1,10 @@
 from flask import Flask, make_response, jsonify, request
 import pandas as pd
+import logging
+from waitress import serve
 
+logger = logging.getLogger('waitress')
+logger.setLevel(logging.INFO)
 
 class ModelServer:
     def __init__(self):
@@ -18,6 +22,7 @@ app = Flask(__name__)
 
 @app.route('/recommendation')
 def recommendation():
+    # logger.info('Request Received')
     anime_name = request.args.get('anime_name')
     if(anime_name is None):
         return make_response('Bad Request', 400)
@@ -29,10 +34,12 @@ def recommendation():
     return recommendation.to_json()
 
 
+@app.route('/')
+def index():
+    return make_response('Anime Recommendation API :3', 200)
+
+
 if __name__ == '__main__':
-    print('Loading model...')
-    from waitress import serve
-    print('Model loaded. Serving app...')
     serve(app, host="0.0.0.0", port=8080)
 
  

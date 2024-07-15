@@ -7,4 +7,7 @@ This project is a server application that provides anime recommendations to user
 - Recommendation engine
 - API endpoints for accessing recommendations
 
+## Test
+
+http://localhost:8080/recommendation?anime_name=Hiyokoi
 
