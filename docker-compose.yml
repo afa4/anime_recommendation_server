@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
